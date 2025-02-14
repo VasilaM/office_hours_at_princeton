@@ -1,0 +1,22 @@
+Dear Student,
+
+I hope this message finds you well.
+
+Please note the update to the office hours as outlined below:
+
+Old Information:
+- Date: {prevdate}
+- Start Time: {prevstarttime.strftime('%H:%M')}
+- End Time: {prevendtime.strftime('%H:%M')}
+- Location: {prevlocation}
+
+New Information:
+- Date: {date.strftime('%Y-%m-%d')}
+- Start Time: {starttime}
+- End Time: {endtime}
+- Location: {location}
+
+Should you have any further questions or concerns regarding this change, please feel free to reach out to your instructor.
+
+Best regards,
+Office Hours At Princeton

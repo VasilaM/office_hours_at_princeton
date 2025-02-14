@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='landing-page.css') }}">
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    </head>
+    <body>
+      <div class="bg-gray-100 min-h-screen py-6 px-6">
+    
+        <div class="ml-auto">
+          <form action="{{ url_for('cal_events.landing_page') }}" method="get">
+            <button class="back rounded-md bg-blue-500 p-3 text-white font-bold 
+                          hover:bg-blue-600 focus:outline-none"
+                    type="submit" name="back">
+              Back
+            </button>
+          </form>
+        </div>
+
+          <div class="text-center mb-6">
+            <h1 class="text-4xl font-bold text-gray-800">Meet Our Team</h1>
+          </div>     
+                  
+          <div class="grid grid-cols sm:grid-cols-2 lg:grid-cols-5 gap-4 max-w-4xl mx-auto">
+            <!-- Team Member 1 -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+              <img src="/static/images/Tyler.jpg" alt="Team Member" class="w-full h-60 object-cover">
+              <div class="p-4">
+                <h3 class="text-lg font-semibold text-gray-800">Tyler Longo</h3>
+              </div>
+            </div>
+          
+            <!-- Team Member 2 -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+              <img src="/static/images/Vasila.jpg" alt="Team Member" class="w-full h-60 object-cover">
+              <div class="p-4">
+                <h3 class="text-lg font-semibold text-gray-800">Vasila Mirshamsova</h3>
+              </div>
+            </div>
+            
+            <!-- Team Member 3 -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+              <img src="/static/images/Feruza.jpg" alt="Team Member" class="w-full h-60 object-cover">
+              <div class="p-4">
+                <h3 class="text-lg font-semibold text-gray-800">Feruza Mukhammadieva</h3>
+              </div>
+            </div>
+
+          
+            <!-- Team Member 4 -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+              <img src="/static/images/Denish.jpg" alt="Team Member" class="w-full h-60 object-cover">
+              <div class="p-4">
+                <h3 class="text-lg font-semibold text-gray-800">Denish Patel</h3>
+              </div>
+            </div>
+          
+            <!-- Team Member 5 -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+              <img src="/static/images/Amin.jpg" alt="Team Member" class="w-full h-60 object-cover">
+              <div class="p-4">
+                <h3 class="text-lg font-semibold text-gray-800">Amin Zare</h3>
+              </div>
+            </div>
+          </div>            
+        </div>          
+    </body>
+</html>

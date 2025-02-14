@@ -1,0 +1,199 @@
+/* sidebar main elements config */
+
+#sidebar {
+    width: 20%;
+}
+
+#searchInput {
+    width: 100%;
+    height: 6vh;
+    border-radius: 10px;
+    padding: 5px; 
+    margin: 0;
+    margin-top: 1vh;
+    border-width: 2px;
+    border-color: #333;
+}
+
+#savedCourses{
+    max-height: 25vh; 
+    border-radius: 5px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#searchResults {
+    border-radius: 5px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* shared elements between search and saved */
+
+.title {
+    width: 100%; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block; 
+}
+
+.course_num {
+    width: 90%; 
+    overflow-wrap: anywhere;
+    display: block; 
+}
+
+/* search results config */
+
+.result-item {
+    position: relative;
+    padding: 10px;
+    margin-bottom: 2px;
+    width: 100%;
+    background-color: lightsteelblue;
+    color: #333;
+}
+
+.result-item button {
+    background: transparent;
+    border: none;
+    position: absolute;
+    top: 2px;
+    right: 3px;
+    font-size: 26px;
+}
+
+.result-item button:hover {
+    cursor: grab;
+    color: #EC8305; 
+}
+
+.result-item:hover {
+    background-color: rgb(159, 177, 200);
+}
+
+.result-item .title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 1.5em;
+    transition: max-height 0.9s ease;
+}
+
+.result-item:hover .title {
+    white-space: normal;
+    max-height: 5em;
+    overflow: visible;
+}
+
+
+/* saved courses config */
+
+.saved-course-item {
+    position: relative;
+    padding: 10px;
+    margin-bottom: 2px;
+    width: 100%;
+    background-color: #a8a8a8;
+    color: white;
+}
+
+.saved-course-item button {
+    background: white;
+    border: none;
+    padding-top: 0.2rem;
+    height: 1.25rem;
+    width: 1.5rem;
+    content: url('data:image/svg+xml,<svg viewBox="0 0 15 1" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="15" y2="0" style="stroke:black;stroke-width:4" />Sorry, your browser does not support inline SVG.</svg>');
+    font-weight: 900;
+    border-radius: 15px;
+    display: inline-flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+.saved-course-item button:hover {
+    cursor: pointer;
+    color: #EC8305; 
+}
+
+.saved-course-item:hover {
+    background-color: rgba(213, 213, 213, 0.162);
+    overflow-wrap: anywhere;
+}
+
+.saved-course-item .title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 1.5em;
+    transition: max-height 0.9s ease;
+}
+
+.saved-course-item:hover .title {
+    white-space: normal;
+    max-height: 5em;
+    overflow: visible;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 1.25rem;
+  margin-bottom: 5px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.eye {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 15px;
+  cursor: pointer;
+  background-color: white; 
+  border-radius: 15px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Add the "open" eye SVG */
+.eye:before {
+  height: 1.5rem;
+  width: 1.5rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.05rem;
+  content: url('data:image/svg+xml,<svg viewBox="0 0 45 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M28.641 19.0959C28.641 22.1335 26.1786 24.5959 23.141 24.5959C20.1035 24.5959 17.641 22.1335 17.641 19.0959C17.641 16.0584 20.1035 13.5959 23.141 13.5959C26.1786 13.5959 28.641 16.0584 28.641 19.0959Z" stroke="black" stroke-width="5"/><path d="M2 19.75C17.2436 2.74999 28.8077 2.74998 43 19.75" stroke="black" stroke-width="3"/><path d="M2 17.9998C17.2436 34.9998 28.8077 34.9998 43 17.9998" stroke="black" stroke-width="3"/><path d="M34.5897 12L39.8462 7M10.4103 12L5.67949 6.5M23.0256 7V0" stroke="black" stroke-width="3"/></svg>');
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+/* Eye closed state for unchecked toggle */
+.switch input:not(:checked) + .eye:before {
+  height: 1.5rem;
+  width: 1.5rem;
+  padding-top: 0.25rem;
+  content:url('data:image/svg+xml,<svg viewBox="0 0 43 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 1.00001C16.5 18 27.5 18 41 1" stroke="black" stroke-width="3"/><path d="M33 9.00002L38 14M10 9.00002L5.5 14.5M22 14V21" stroke="black" stroke-width="3"/></svg>');
+}
+
+.saved-course-buttons {
+  display: inline-flex;
+  justify-content: end;
+  gap: 0.25rem;
+}
+
+.saved-course-top-line {
+  display: flex;
+}

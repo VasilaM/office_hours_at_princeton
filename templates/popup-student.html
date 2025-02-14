@@ -1,0 +1,28 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+<div id="popup-overlay" class="popup-overlay" onclick="closePopup()"></div>
+<div id="event-popup" class="popup hidden">
+    <div class="popup-content">
+        <input type="hidden" id="ohId" name="oh_id">
+
+        <div class="button-bar-popup">
+            <button class="button-popup" onclick="closePopup()"><i class="fa-solid fa-x"></i></button>
+        </div>
+
+        <h2 id="eventCourse" style="display: inline;" ></h2>
+            <h4 id="eventRecurring" class="recurring-indicator"></h4>
+
+            <div style="display: flex; align-items: baseline; padding: 5px;">
+                <i class="fa-solid fa-calendar-week" style="padding-right: 5px;"></i>
+                <h4 id="eventStartEnd" style="margin: 0px;"></h4>
+            </div>
+            <div style="display: flex; align-items: center; padding: 5px;">
+                <i class="fa-solid fa-location-dot" style="padding-right: 6.75px;"></i>
+                <h4 id="eventLocation" style="margin: 0px;"></h4>
+            </div>
+            <div style="display: flex; align-items: baseline; padding: 5px;">
+                <i class="fa-regular fa-user" style="padding-right: 5px;"></i>
+                <h4 id="eventInstructor" style="margin: 0px;"></h5>
+            </div>
+    </div>
+</div>

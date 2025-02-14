@@ -1,0 +1,66 @@
+<nav>
+    <div class="navbar">
+        <div class="logo"><a href="/">oh@princeton</a></div>
+        <ul class="menu">
+            <li><a href="/">Student View</a></li>
+            <li><a href="{{url_for('cal_events.logoutapp')}}">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="button-container">
+    <div class="username-style"><strong>Welcome, {{username}}</strong></div>
+    <div>
+        <button class="open-button" onclick="openProposalForm()">Propose Office Hours</button>
+    </div>
+</div>
+
+<!-- The form -->
+<div class="form-popup" id="sendOH">
+    <form action="/sendoh" method="post" class="form-container" id="propose-oh-form">
+        <h1>Propose Office Hours</h1>
+
+        <label for="proposal-courses"><b>Class</b></label>
+        <select name="courses" id="proposal-courses" onchange="updateInstructors()">
+        </select>
+
+        <label for="associated-instructors"><b>Instructor</b></label>
+        <select name="associated-instructors" id="associated-instructors">
+        </select>
+
+        <label for="date"><b>Date:</b></label>
+        <input type="date"  name="date" id="date" required>
+
+        <label for="starttime"><b>Start Time:</b></label>
+        <input type="time"  name="starttime" id="starttime" required>
+
+        <label for="endtime"><b>End Time:</b></label>
+        <input type="time"  name="endtime" id="endtime" required>
+
+        <label for="location"><b>Location: </b></label>
+        <input type="text" placeholder="Location and Additional notes" name="location" id="location" required>
+        
+        <div class="form-group">
+            <label for="recurring">Recurring Weekly</label>
+            <input type="checkbox" id="recurring" name="recurring">
+        </div>
+        
+        <input type="button" value="Propose" id="post" onclick="sendOH('{{ netid }}')">
+        <input type="button" value="Close" id="close" onclick="closeProposalForm()">
+    </form>
+</div>
+
+<div class="form-popup" id="exportOH">
+    <form class="form-container" id="export-oh-form">
+        <h1>Export Office Hours</h1>
+
+        <p>This will create a new iCal file with office hours for all toggled courses, which you can add to your calendar app by importing the resultant file in your desired calendar app.</p>
+
+        <input type="button" value="Export" id="post" class="export-ical">
+        <input type="button" value="Close" id="close" onclick="closeExportForm()">
+    </form>
+</div>
+
+{% include 'sidebar.html' %}
+
+{% include 'popup-student.html' %}

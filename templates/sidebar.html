@@ -1,0 +1,29 @@
+<div class="container">
+    <div id="sidebar">
+        <input type="text" id="searchInput" placeholder="Search (e.g. COS 333, Computer Sci...)" oninput="getResults()">
+        <div class="sidebar-grouping" style="
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        ">
+            <text class="sidebar-titles">Saved Courses</text>
+            <button class="open-button" onclick="openExportForm()" style="
+            height: 20px;
+            font-weight: 550;
+            border: none;
+            border-radius: 5px;
+            background-color: #608BC1;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            ">Export</button>
+        </div>
+        <div id="savedCourses"></div>
+
+        <text class="sidebar-titles">Search Results</text>
+        <div id="searchResults"></div> <!-- Container for displaying search results -->
+
+    </div>
+    <div id="calendar"></div>
+
+</div>

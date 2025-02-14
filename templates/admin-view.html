@@ -1,0 +1,146 @@
+<nav>
+    <div class="navbar">
+        <div class="logo"><a href="/">oh@princeton</a></div>
+        <ul class="menu">
+            <li><a href="{{url_for('cal_events.student_view')}}">Admin View</a></li>
+            <li><a href="{{url_for('cal_events.logoutapp')}}">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="button-container">
+    <div class="username-style"><strong>Welcome, {{username}}</strong></div>
+    <div>
+        <button class="open-button" onclick="openAdminForm()" id="add_admin">Add Admin</button>
+        <button class="open-button" onclick="openOHForm()" id="add_oh">Add Office Hours</button>
+        <button class="open-button" onclick="openProposalForm()" id="propose_oh">Propose Office Hours</button>
+        <button class="open-button" onclick="openApprovalForm()" id="approve_oh">Approve Office Hours</button>
+    </div>
+</div>
+
+<!-- The form -->
+<div class="form-popup" id="addOH">
+    <form action="/createoh" method="post" class="form-container" id="event-form">
+        <h1>Add Office Hours</h1>
+
+        <label for="courses"><b>Class</b></label>
+        <select name="courses" id="courses">
+        </select>
+
+        <label for="date"><b>Date:</b></label>
+        <input type="date"  name="date" id="date" required>
+
+        <label for="starttime"><b>Start Time:</b></label>
+        <input type="time"  name="starttime" id="starttime" required>
+
+        <label for="endtime"><b>End Time:</b></label>
+        <input type="time"  name="endtime" id="endtime" required>
+
+        <label for="location"><b>Location: </b></label>
+        <input type="text" placeholder="Location and Additional notes" name="location" id="location" required>
+        
+        <!-- Recurring weekly option -->
+        <div class="form-group">
+            <label for="recurring">Recurring Weekly</label>
+            <input type="checkbox" id="recurring" name="recurring">
+        </div>
+
+        <input type="button" value="Post" id="post" onclick="postOH('{{ netid }}')">
+        <input type="button" value="Close" id="close" onclick="closeOHForm()">
+    </form>
+</div>
+
+<div class="form-popup" id="sendOH">
+    <form action="/sendoh" method="post" class="form-container" id="propose-oh-form">
+        <h1>Propose Office Hours</h1>
+
+        <label for="proposal-courses"><b>Class</b></label>
+        <select name="courses" id="proposal-courses" onchange="updateInstructors()">
+        </select>
+
+        <label for="associated-instructors"><b>Instructor</b></label>
+        <select name="associated-instructors" id="associated-instructors">
+        </select>
+
+        <label for="date"><b>Date:</b></label>
+        <input type="date"  name="date" id="date" required>
+
+        <label for="starttime"><b>Start Time:</b></label>
+        <input type="time"  name="starttime" id="starttime" required>
+
+        <label for="endtime"><b>End Time:</b></label>
+        <input type="time"  name="endtime" id="endtime" required>
+
+        <label for="location"><b>Location: </b></label>
+        <input type="text" placeholder="Location and Additional notes" name="location" id="location" required>
+        
+        <div class="form-group">
+            <label for="recurring">Recurring Weekly</label>
+            <input type="checkbox" id="recurring" name="recurring">
+        </div>
+        
+        <input type="button" value="Propose" id="post" onclick="sendOH('{{ netid }}')">
+        <input type="button" value="Close" id="close" onclick="closeProposalForm()">
+    </form>
+</div>
+
+<div class="form-popup" id="addAdmin">
+    <form action="/add_admin" method="post" class="form-container" id="add-admin-form">
+        <h1>Add Admin</h1>
+        <label for="admin-courses">Class</label>
+        <select name="admin-courses" id="admin-courses">
+        </select>
+
+        <label for="netid"><b>Netid:</b></label>
+        <input type="text"  name="netid" id="netid" required>
+
+        <input type="button" value="Add" id="post" onclick="addAdmin()">
+        <input type="button" value="Close" id="close" onclick="closeAdminForm()">
+    </form>
+</div>
+
+<div class="form-popup" id="approveOH">
+    <form action="/approve_office_hours" method="post" class="form-container" id="approve-oh-form">
+        <h1>Approve Office Hours</h1>
+        <div id="oh-to-approve-container"></div>
+
+        <input type="button" value="Save" id="post" onclick="approveOH()">
+        <input type="button" value="Close" id="close" onclick="closeApprovalForm()">
+    </form>
+</div>
+
+{% include 'sidebar.html' %}
+{% include 'popup-admin.html' %}
+
+<div class="form-popup" id="editOH">
+    <form action="/update-office-hour" method="post" class="form-container" id="edit-office-hour-form">
+        <h3>Edit Office Hours</h3>
+        <input type="hidden" name="ohid" id="ohid">
+    
+        <label for="editdate"><b>Date:</b></label>
+        <input type="date"  name="editdate" id="editdate" required>
+    
+        <label for="editstarttime"><b>Start Time:</b></label>
+        <input type="time"  name="editstarttime" id="editstarttime" required>
+    
+        <label for="editendtime"><b>End Time:</b></label>
+        <input type="time"  name="editendtime" id="editendtime" required>
+    
+        <label for="editlocation"><b>Location:</b></label>
+        <input type="text"  name="editlocation" id="editlocation" required>
+    
+        <input type="button" value="Save Changes" id="post" onclick="updateOfficeHours()">
+        <input type="button" value="Close" id="close" onclick="closeEditOH()">
+    </form>
+</div>
+
+<div class="form-popup" id="exportOH">
+    <form class="form-container" id="export-oh-form">
+        <h1>Export Office Hours</h1>
+
+        <p>This will create a new iCal file with office hours for all toggled courses, which you can add to your calendar app by importing the resultant file in your desired calendar app.</p>
+
+        <input type="button" value="Export" id="post" class="export-ical">
+        <input type="button" value="Close" id="close" onclick="closeExportForm()">
+    </form>
+</div>

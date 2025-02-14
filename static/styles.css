@@ -1,0 +1,433 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 14px;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0.5vh;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+/* NAVIGATION BAR */
+nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: calc(100% - 1.5rem);
+    height: 9vh;
+    background: #4A628A;
+    z-index: 1000;
+    margin: 0.75rem;
+    border-radius: 0.75rem;
+}
+
+nav .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+nav .navbar .logo a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 1.5rem;
+}
+
+nav .navbar .menu {
+    display: flex;
+    margin-right: 20px;
+}
+
+.navbar .menu li {
+    list-style: none;
+    margin: 0 15px;
+}
+
+.navbar .menu li a {
+    font-size: 1.2rem !important;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.navbar .menu li a:hover {
+    color: #EC8305; 
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 1em;
+    margin: 2vh;
+    margin-top: 12vh;
+}
+
+.username-style {
+    font-size: 20px;
+    color: #608BC1;
+}
+
+.button-container button {
+    font-weight: 550;
+    padding: 10px 15px;
+    border: none; 
+    border-radius: 5px;
+    background-color: #608BC1;
+    color: white; 
+    cursor: pointer; 
+    transition: background-color 0.3s;
+    margin: 0.2vh 0.2vh;
+}
+
+.button-container button:hover {
+    background-color: #EC8305; 
+}
+
+#calendar {
+    flex-grow: 1;
+    margin-left: 1%;
+    border-radius: 10px;
+    position: relative;
+}
+
+.fc-scroller {
+    overflow-y: auto;
+}
+
+.fc table {
+    border-radius: 10px !important;
+}
+
+.fc-toolbar {
+    margin-bottom: 1.5vh !important;
+}
+
+.fc-toolbar-title {
+    font-size: 2.5rem !important;
+    font-weight: bold !important;
+    color: #3d3d3d; 
+    text-align: center;
+}
+
+.fc-event-title {
+    font-weight: bold;
+}
+
+.fc-event-draft {
+    color: #333;
+}
+
+.fc-custom-event {
+    overflow: hidden;
+    height: inherit;
+}
+ 
+.form-popup {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -45%);
+    border: 2px solid #2980b9; 
+    border-radius: 10px;
+    background-color: #fefefe;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
+    padding: 20px 40px; 
+    z-index: 1001;
+    width: 500px; 
+    overflow: hidden;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column; 
+}
+
+.form-container h1 {
+    color: #2980b9;
+    margin-bottom: 20px; 
+}
+
+.form-container label {
+    margin-top: 10px; 
+    color: #333; 
+}
+
+
+.form-container select,
+.form-container input[type="date"],
+.form-container input[type="time"],
+.form-container input[type="text"],
+.form-container input[type="submit"],
+.form-container input[type="button"],
+.form-container .btn.cancel {
+    padding: 10px;
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    margin-top: 5px; 
+}
+
+.form-container select:focus,
+.form-container input[type="date"]:focus,
+.form-container input[type="time"]:focus,
+.form-container input[type="text"]:focus {
+    border-color: #2980b9; 
+    outline: none; 
+}
+
+#post {
+    background-color: #2980b9; 
+    color: white; 
+    cursor: pointer;
+}
+
+#close {
+    background-color: #9e9e9e;
+    color: white; 
+}
+
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.25);
+    z-index: 1000;
+}
+
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.25);
+    z-index: 900;
+}
+
+.popup {
+    position: absolute;
+    background-color: #dde3ea;
+    border: 1px solid #ccc;
+    padding: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    z-index: 1000;
+}
+
+.button-bar-popup{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button-popup{
+    border-style: none;
+    background: none;
+}
+
+.button-popup:hover{
+    cursor: pointer;
+    background: lightgray;
+    border-radius: 50px;
+}
+
+.fc-timegrid-event:hover {
+    cursor: pointer;
+}
+
+.no-scroll {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+  
+.hidden {
+    display: none !important;
+}
+
+/*Sidebar*/
+.container {
+    display: flex;
+    margin: 2vh;
+    padding: 0;
+    overflow: hidden;
+    height: 78vh;
+
+}
+
+#sidebar {
+    width: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0;
+    height: 180vh;
+}
+
+#searchResults {
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+    padding-bottom: 0;
+}
+
+.saved-course-item, .result-item {
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.sidebar-titles {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 2vh 0;
+}
+
+.pill {
+    margin-bottom: 1em;
+}
+
+.form-group {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.recurring-indicator {
+    color: #666;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+/* Style for the checkbox */
+input[type="checkbox"] {
+    width: auto;
+    margin-left: 10px;
+}
+
+/* Style for recurring event indicator in calendar */
+.fc-event-recurring {
+    font-size: 0.8em;
+    color: #666;
+    margin-bottom: 2px;
+}
+
+/* Styles for approve OH popup */
+/* Wrapper to align the buttons */
+.custom-radio-group {
+    display: flex;
+    gap: 8px;
+}
+
+/* Hide the original radio button */
+.custom-radio input {
+    display: none;
+}
+
+.custom-radio-group label {
+    margin-top: 0;
+}
+
+/* Style the custom button */
+.radio-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem; /* Adjust size */
+    height: 3rem;
+    color: white;
+    border: 2px solid #ccc; /* Default border */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.radio-symbol {
+    font-size: 3rem;
+}
+
+.radio-button-approve {
+    background-color: #92d2b0;
+    border-color: #92d2b0;
+}
+.radio-button-reject {
+    background-color: #e79797;
+    border-color: #e79797;
+}
+/* Style for the "checked" state */
+.custom-radio input:checked + .radio-button-approve{
+    background-color: #0d7740; /* Green for Yes */
+    border-color: #0d7740;
+    color: #fff;
+}
+
+.custom-radio input:checked + .radio-button-reject {
+    background-color: #d64545; /* Red for No */
+    border-color: #d64545;
+}
+
+/* Hover effect */
+.radio-button:hover {
+    opacity: 0.8;
+}
+
+.proposed-oh-info {
+    background-color: #ccc;
+    border-radius: 5px;
+    height: 3rem;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding: 0.25rem;
+    justify-content: space-between;
+}
+
+
+@media (max-width: 600px) {
+    .form-popup {
+        width: 350px; 
+    }
+}
+
+:root {
+    --fc-now-indicator-color: #FE0000;
+}

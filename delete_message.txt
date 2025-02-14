@@ -1,0 +1,10 @@
+Dear Student,
+
+I hope this message finds you well.
+
+{editor} has cancelled their office hour on {date} at {starttime.strftime('%H:%M')}
+
+Should you have any further questions or concerns regarding this change, please feel free to reach out to your instructor.
+
+Best regards,
+Office Hours At Princeton

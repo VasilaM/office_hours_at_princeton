@@ -1,0 +1,92 @@
+ <!-- Event modal details -->
+ <div id="eventModal" class="event-modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="modal-header">
+            <h2 id="modalTitle"></h2>
+        </div>
+        <div class="modal-body">
+            <p><strong>Time:</strong><span id="modalTime"></span></p>
+            <p><strong>Location:</strong><span id="modalLocation"></span></p>
+            <p><strong>Notes:</strong><span id="modalNotes"></span></p>
+        </div>
+        <div class="modal-footer">
+            <button class="delete-btn" id="'deleteEventBtn">Delete Event</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    
+// Helper function to format event time
+            function formatEventTime(date) {
+                return new Date(date).toLocaleTimeString([],{
+                    hour: '2-digit',
+                    minute: '2-digit',
+                });
+            }
+            // Helper function to close event blocks
+            function closeModal() {
+                const modal = document.getElementById('eventModal');
+                modal.style.display = 'none';
+            }
+            document.addEventListener('DOMContentLoaded', function() {
+                // Close modal handlers
+                document.querySelector('.close-modal').addEventListener('click', closeModal);
+                // Close modal when clicking outside of event block
+                window.onclick = function(eventObj) {
+                    const modal = document.getElementById('eventModal');
+                    if (event.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                };
+                var calendarEl = document.getElementById('calendar');
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'timeGridWeek',
+                    allDaySlot: false,
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                        
+                    },
+                    events: '/events',
+
+                    eventClick: function(info) {
+                        const eventObj = info.event;
+                        const modal = document.getElementById('eventModal');
+
+                        document.getElementById('modalTitle').textContent = eventObj.title;
+                        document.getElementById('modalTime').textContent = `${formatEventTime(eventObj.start)} - ${formatEventTime(eventObj.end)}`;
+                        document.getElementById('modalLocation').textContent = eventObj.extendedProps.extranote;
+                        
+                        // Show modal
+                        modal.style.display = 'block';
+
+                        // Delete event handler
+                        // Not finalized, need to work implement functionality to remove the event from the database
+                        document.getElementById('deleteEventBtn').onclick = function() {
+                            if (confirm('Are you sure you want to delete this event?')) {
+                                fetch(`/event/${eventObj.id}`, {
+                                method: 'DELETE',
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.status === 'success') {
+                                    event.remove();
+                                    modal.style.display = 'none';
+                                } else {
+                                    alert('Error deleting event: ' + data.message);
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert('Error deleting event');
+                            });
+                        }
+                    };
+                }
+            });
+            calendar.render();
+        });
+</script>
